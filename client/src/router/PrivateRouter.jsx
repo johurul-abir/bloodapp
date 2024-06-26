@@ -4,6 +4,7 @@ import CreateUser from "../pages/admin/user/CreateUser";
 import { Navigate, Outlet } from "react-router-dom";
 import Layout from "../components/layout/Layout";
 import UserDashboard from "../pages/user/UserDashboard";
+import ChangePass from "../pages/user/ChangePass";
 
 const PrivateRouteGard = () => {
   const { auths } = useSelector((state) => state.auth);
@@ -24,8 +25,14 @@ const PrivateRouter = [
         element: <Layout />,
         children: [
           {
-            path: "dashboard",
+            path: "/dashboard",
             element: <UserDashboard />,
+            children: [
+              {
+                path: "changepass",
+                element: <ChangePass />,
+              },
+            ],
           },
         ],
       },

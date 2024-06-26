@@ -11,7 +11,7 @@ import { studentMulter } from "../utils/multer.js";
 //init router
 const router = express.Router();
 
-//all student routers
+//all user routers
 router.post("/", studentMulter, createUser);
 router.get("/", getAllUser);
 router.delete("/:id", deleteUser);

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import createToast from "../../utils/toastify";
 import { setMessageEmpty } from "../../features/auth/authSlice";
-import { useLocation } from "react-router-dom";
+import { Link, Outlet, useLocation } from "react-router-dom";
 
 const UserDashboard = () => {
   //use dispatch
@@ -12,7 +12,6 @@ const UserDashboard = () => {
 
   // use location
   const location = useLocation();
-  console.log(location);
 
   //use Selector
   const { message, error, auths } = useSelector((state) => state.auth);
@@ -58,7 +57,7 @@ const UserDashboard = () => {
 
                         {auths.location && (
                           <h5 className="mb-0">
-                            <i className="fas fa-map-marker-alt" />{" "}
+                            <i className="fas fa-map-marker-alt" />
                             {auths.location}
                           </h5>
                         )}
@@ -70,10 +69,10 @@ const UserDashboard = () => {
                   <nav className="dashboard-menu">
                     <ul>
                       <li className="active">
-                        <a href="patient-dashboard.html">
+                        <Link to="/dashboard">
                           <i className="fas fa-columns" />
                           <span>Dashboard</span>
-                        </a>
+                        </Link>
                       </li>
                       <li>
                         <a href="favourites.html">
@@ -126,10 +125,10 @@ const UserDashboard = () => {
                         </a>
                       </li>
                       <li>
-                        <a href="change-password.html">
+                        <Link to="/dashboard/changepass">
                           <i className="fas fa-lock" />
                           <span>Change Password</span>
-                        </a>
+                        </Link>
                       </li>
                       <li>
                         <a onClick={handleLogOut}>
@@ -144,6 +143,8 @@ const UserDashboard = () => {
             </div>
             {/* / Profile Sidebar */}
             <div className="col-md-7 col-lg-8 col-xl-9">
+              <Outlet />
+
               <div className="row">
                 <div className="col-12 col-md-6 col-lg-4 col-xl-3 patient-dashboard-top">
                   <div className="card">
@@ -212,6 +213,7 @@ const UserDashboard = () => {
                   </div>
                 </div>
               </div>
+
               <div className="row patient-graph-col">
                 <div className="col-12">
                   <div className="card">
@@ -317,6 +319,7 @@ const UserDashboard = () => {
                   </div>
                 </div>
               </div>
+
               <div className="card">
                 <div className="card-body pt-0">
                   {/* Tab Menu */}
